@@ -1,5 +1,4 @@
 import 'package:booksale/domain/entities/cart.dart';
-import 'package:booksale/domain/entities/book.dart';
 import 'book_model.dart';
 
 class CartItemModel {

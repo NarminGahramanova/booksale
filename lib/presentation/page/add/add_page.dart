@@ -29,18 +29,7 @@ class AddPage extends StatelessWidget {
           centerTitle: false,
           scrolledUnderElevation: 0,
           backgroundColor: AppColors.backgroundColor,
-          leading: IconButton(
-            onPressed: () {
-              context.pop();
-            },
-            icon: Icon(Icons.arrow_back_ios, color: AppColors.primaryBrown),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.more_vert, color: AppColors.primaryBrown),
-            ),
-          ],
+
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 48.0),

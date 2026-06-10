@@ -1,9 +1,11 @@
+import 'package:booksale/core/navigation/custom_navigation_helper.dart';
 import 'package:booksale/core/theme/app_colors.dart';
 import 'package:booksale/presentation/page/home/bloc/home_bloc.dart';
 import 'package:booksale/presentation/page/home/product_lists_type.dart';
 import 'package:booksale/presentation/page/home/search_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../widgets/book_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,13 +18,14 @@ class HomePage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
           appBar: AppBar(
-            scrolledUnderElevation: 0,
             backgroundColor: AppColors.backgroundColor,
+            scrolledUnderElevation: 0,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go(CustomNavigationHelper.notficationsPath);
+                },
                 icon: Icon(
                   Icons.notifications_outlined,
                   color: AppColors.primaryBrown,

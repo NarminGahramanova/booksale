@@ -1,10 +1,9 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
 class BookLocalDataSource {
-  final Box box; // Hive-in saxlama qutusu
+  final Box box;
 
-  BookLocalDataSource(this.box);//box-u kenardan veririk
-
+  BookLocalDataSource(this.box);
   Future<void> saveBook(Map<String, dynamic> book) async {
     await box.put(book['id'], book);
   }

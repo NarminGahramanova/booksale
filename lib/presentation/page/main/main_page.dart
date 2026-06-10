@@ -3,8 +3,7 @@ import 'package:booksale/presentation/page/add/add_page.dart';
 import 'package:booksale/presentation/page/favorite/fav_page.dart';
 import 'package:booksale/presentation/page/home/home_page.dart';
 import 'package:flutter/material.dart';
-
-import '../cart/profil.dart';
+import '../cart/widgets/cart_item_.dart';
 import '../profil_page/profil_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -17,12 +16,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomePage(),
-    Profil(),
-    AddPage(),
-    FavPage(),
-    ProfilPage(),
+  final List<Widget> _pages = [
+    const HomePage(),
+    const FavPage(),
+    const AddPage(),
+    const CartPage(),
+    const ProfilPage(),
   ];
 
   @override
@@ -51,10 +50,9 @@ class _MainPageState extends State<MainPage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(Icons.home, 'Home', 0),
-              _buildNavItem(Icons.menu_book, 'MY BOOKS', 1),
-
+              _buildNavItem(Icons.favorite, 'Favourites', 1),
               const SizedBox(width: 40),
-              _buildNavItem(Icons.favorite_border, 'Favourites', 3),
+              _buildNavItem(Icons.shopping_cart, 'Cart', 3),
               _buildNavItem(Icons.person, 'Profile', 4),
             ],
           ),

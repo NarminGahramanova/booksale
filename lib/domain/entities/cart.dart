@@ -3,9 +3,10 @@ import 'book.dart';
 class CartItem {
 
   final Book book;
-  final int quantity;
+  int quantity;
 
-  CartItem({required this.book,required this.quantity});
+
+  CartItem({required this.book,required this.quantity,e});
 }
 
 class Cart {

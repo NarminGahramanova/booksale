@@ -1,7 +1,11 @@
-import 'dart:ui';
 import 'package:booksale/core/theme/app_colors.dart';
+import 'package:booksale/core/theme/app_textstyle.dart';
+import 'package:booksale/domain/entities/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../domain/entities/book.dart';
+import '../cart/bloc/cart_bloc.dart';
 
 class DetailPage extends StatelessWidget {
   final Book book;
@@ -10,8 +14,6 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(book.description);
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
 
@@ -29,15 +31,7 @@ class DetailPage extends StatelessWidget {
             child: Icon(Icons.favorite_border, color: AppColors.primaryBrown),
           ),
         ],
-        title: Text(
-          "Kitab Bazarı",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontStyle: FontStyle.italic,
-            fontFamily: "Newsreader",
-            color: AppColors.primaryBrown,
-          ),
-        ),
+        title: Text("Kitab Bazarı", style: AppTextstyle.appBarTitle),
         scrolledUnderElevation: 0,
         backgroundColor: AppColors.backgroundColor,
       ),
@@ -68,7 +62,7 @@ class DetailPage extends StatelessWidget {
                         child: Center(
                           child: Text(
                             " ${book.price} AZN",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: AppTextstyle.priceBadge,
                           ),
                         ),
                       ),
@@ -86,13 +80,7 @@ class DetailPage extends StatelessWidget {
                         child: Divider(color: AppColors.priceColor),
                       ),
                       SizedBox(width: 10),
-                      Text(
-                        'BESTSELLER',
-                        style: TextStyle(
-                          color: AppColors.priceColor,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      Text('BESTSELLER', style: AppTextstyle.bestseller),
                     ],
                   ),
                 ),
@@ -101,23 +89,8 @@ class DetailPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        book.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28,
-                          color: AppColors.primaryBrown,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      Text(
-                        book.author,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
+                      Text(book.title, style: AppTextstyle.profileTitle),
+                      Text(book.author, style: AppTextstyle.bookAuthor),
                     ],
                   ),
                 ),
@@ -131,21 +104,10 @@ class DetailPage extends StatelessWidget {
                     mainAxisSpacing: 12,
                     childAspectRatio: 1.8,
                   ),
-                  itemCount: 4,
+                  itemCount: 2,
                   itemBuilder: (context, index) {
-                    List<String> titles = [
-                      "NƏŞRİYYAT",
-                      "İL",
-                      "VƏZİYYƏT",
-                      "KATEQORİYA",
-                    ];
-                    // List<String> values = ["Qanun\nNəşriyyatı", "2021", "Yeni kimi", "Klassika"];
-                    List<String> values = [
-                      book.publisher,
-                      book.year,
-                      book.condition,
-                      book.category,
-                    ];
+                    List<String> titles = ["NƏŞRİYYAT", "KATEQORİYA"];
+                    List<String> values = [book.publisher, book.category];
                     return Card(
                       color: Colors.white,
                       elevation: 0.5,
@@ -158,24 +120,9 @@ class DetailPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              titles[index],
-                              style: TextStyle(
-                                color: Colors.grey[400],
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1.1,
-                              ),
-                            ),
+                            Text(titles[index], style: AppTextstyle.cardLabel),
                             const SizedBox(height: 4),
-                            Text(
-                              values[index],
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                            Text(values[index], style: AppTextstyle.cardValue),
                           ],
                         ),
                       ),
@@ -188,34 +135,22 @@ class DetailPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Təsvir',
-                        style: TextStyle(
-                          color: AppColors.primaryBrown,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        book.description,
-                        style: TextStyle(
-                          fontSize: 16,
-                          height: 1.5,
-                          color: Colors.black87,
-                        ),
-                      ),
+                      Text('Təsvir', style: AppTextstyle.sectionTitle),
+                      Text(book.description, style: AppTextstyle.bodyText),
                       SizedBox(height: 12),
-
                     ],
-
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      print('object');
+                      context.read<CartBloc>().add(
+                        AddToCartEvent(
+                          product: CartItem(book: book, quantity: 1),
+                        ),
+                      );
+                      context.push('/cart');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryBrown,
@@ -225,11 +160,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     child: const Text(
                       "Səbətə Əlavə Et",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style: AppTextstyle.buttonText,
                     ),
                   ),
                 ),

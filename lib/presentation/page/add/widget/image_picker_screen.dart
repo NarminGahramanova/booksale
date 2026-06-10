@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/navigation/widgets/show_bottom_sheet.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../bloc/add_bloc.dart';
 
@@ -12,11 +13,8 @@ class Imagepickerscreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return
       DottedBorder(
-        child: GestureDetector(onTap: (){
-          print("object3");
-          _showBottomSheet(context);
-          // SnackBar;
-        },
+        child: GestureDetector(
+          onTap: () => showImagePickerSheet(context),
           child: Container(
             height: 220,
             width: 300,
@@ -54,40 +52,3 @@ class Imagepickerscreen extends StatelessWidget{
     );}}
 
 
-
-    void _showBottomSheet(BuildContext context) {
-      showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-        ),
-        builder: (context) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                    leading: const Icon(Icons.camera_alt),
-                    title: const Text('Kameradan çək'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      context.read<AddBloc>().add(PickFromCamera());
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.photo_library),
-                    title: const Text('Qalereyadan seç'),
-                    onTap: () {
-                      Navigator.pop(context);
-                      context.read<AddBloc>().add(PickFromGallery());
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      );
-    }
