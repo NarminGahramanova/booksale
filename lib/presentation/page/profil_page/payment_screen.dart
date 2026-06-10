@@ -75,7 +75,11 @@ class PaymentScreen extends StatelessWidget {
                 Text('data kart'),
               ],
             ),
-            Card(),
+            Card(
+
+
+
+            ),
           ],
         ),
       ),
