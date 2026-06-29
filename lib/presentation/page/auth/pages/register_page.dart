@@ -35,9 +35,9 @@ class _RegisterPageState extends State<RegisterPage> {
         if (state is AuthSuccess) {
           context.go(CustomNavigationHelper.mainPath);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       builder: (context, state) {
@@ -75,14 +75,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           Text(
                             "Yeni hesab yarat",
-                            style: AppTextstyle.bestseller.copyWith(fontSize: 24),
+                            style: AppTextstyle.bestseller.copyWith(
+                              fontSize: 24,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               textAlign: TextAlign.center,
                               'Kitab dünyasına xoş gəlmisiniz. Qeydiyyatdan keçin və kəşf etməyə başlayın.',
-                              style: AppTextstyle.bestseller.copyWith(color: Colors.grey),
+                              style: AppTextstyle.bestseller.copyWith(
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 36),
@@ -111,12 +115,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             isPassword: true,
                             controller: _passwordController,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "İstifadə şərtləri və Məxfilik siyasəti ilə razıyam.",
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Text(
+                          //     "İstifadə şərtləri və Məxfilik siyasəti ilə razıyam.",
+                          //   ),
+                          // ),
                           const SizedBox(height: 12),
                           SizedBox(
                             width: double.infinity,
@@ -125,46 +129,62 @@ class _RegisterPageState extends State<RegisterPage> {
                               onPressed: state is AuthLoading
                                   ? null
                                   : () {
-                                context.read<AuthBloc>().add(
-                                  RegisterRequested(
-                                    fullName: _nameController.text.trim(),
-                                    email: _emailController.text.trim(),
-                                    phone: _phoneController.text.trim(),
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                              },
+                                      context.read<AuthBloc>().add(
+                                        RegisterRequested(
+                                          fullName: _nameController.text.trim(),
+                                          email: _emailController.text.trim(),
+                                          phone: _phoneController.text.trim(),
+                                          password: _passwordController.text,
+                                        ),
+                                      );
+                                    },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.priceColor,
                               ),
                               child: state is AuthLoading
-                                  ? const CircularProgressIndicator(color: Colors.white)
+                                  ? const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    )
                                   : Text(
-                                'Qeydiyyatdan keç',
-                                style: AppTextstyle.bestseller.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
+                                      'Qeydiyyatdan keç',
+                                      style: AppTextstyle.bestseller.copyWith(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                             ),
                           ),
                           const SizedBox(height: 48),
                           Row(
                             children: [
-                              Expanded(child: Divider(color: Colors.grey[300], height: 1)),
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.grey[300],
+                                  height: 1,
+                                ),
+                              ),
                               const Text("  Və ya  "),
-                              Expanded(child: Divider(color: Colors.grey[300], height: 1)),
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.grey[300],
+                                  height: 1,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 48),
                           RichText(
                             text: TextSpan(
                               text: "Artıq hesabınız var? ",
-                              style: AppTextstyle.caption.copyWith(fontSize: 15),
+                              style: AppTextstyle.caption.copyWith(
+                                fontSize: 15,
+                              ),
                               children: [
                                 WidgetSpan(
                                   child: GestureDetector(
                                     onTap: () {
-                                      context.go(CustomNavigationHelper.loginPath);
+                                      context.go(
+                                        CustomNavigationHelper.loginPath,
+                                      );
                                     },
                                     child: const Text(
                                       "Daxil olun",
@@ -217,8 +237,15 @@ Widget _buildLoginInput({
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hintText,
-              hintStyle: const TextStyle(fontSize: 18, color: Color(0xFFB8C1BC)),
-              prefixIcon: Icon(prefixIcon, color: const Color(0xFF7A847F), size: 28),
+              hintStyle: const TextStyle(
+                fontSize: 18,
+                color: Color(0xFFB8C1BC),
+              ),
+              prefixIcon: Icon(
+                prefixIcon,
+                color: const Color(0xFF7A847F),
+                size: 28,
+              ),
               suffixIcon: suffixIcon != null
                   ? Icon(suffixIcon, color: const Color(0xFF7A847F), size: 28)
                   : null,

@@ -29,10 +29,10 @@ class ProductListsType extends StatelessWidget {
                       borderRadius: BorderRadiusGeometry.circular(5)
                     ),
                     backgroundColor: isSelected
-                        ? AppColors.accentGreen
+                        ? AppColors.primaryBrown
                         : AppColors.accentGrey,
                     foregroundColor: isSelected
-                        ? AppColors.priceColor
+                        ? Color(0xFFFFFFFF)
                         : AppColors.badgeNew,
                   ),
                   onPressed: () {

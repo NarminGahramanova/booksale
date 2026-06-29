@@ -9,7 +9,6 @@ import 'package:booksale/presentation/page/main/widget/notfications.dart';
 import 'package:booksale/presentation/page/profil_page/address_screen.dart';
 import 'package:booksale/presentation/page/profil_page/order_screen.dart';
 import 'package:booksale/presentation/page/profil_page/payment_screen.dart';
-import 'package:booksale/presentation/page/profil_page/settings_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../../domain/entities/book.dart';
 import '../../presentation/page/cart/widgets/cart_item_.dart';
@@ -80,10 +79,7 @@ final appRouter = GoRouter(
       path: CustomNavigationHelper.orderPath,
       builder: (context, state) => const OrderScreen(),
     ),
-    GoRoute(
-      path: CustomNavigationHelper.settingdPath,
-      builder: (context, state) => const SettingsScreen(),
-    ),
+
     GoRoute(
       path: CustomNavigationHelper.adressPath,
       builder: (context, state) => const AddressScreen(),

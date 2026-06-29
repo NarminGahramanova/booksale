@@ -15,7 +15,7 @@ class CardRemoteDataSourceImpl implements CardRemoteDataSource {
   @override
   Future<List<CardModel>> getCards() async {
     try {
-      final response = await dio.get('/cards');
+      final response = await dio.get('/api/payment-cards');
       return (response.data as List)
           .map((card) => CardModel.fromJson(card))
           .toList();
@@ -27,7 +27,7 @@ class CardRemoteDataSourceImpl implements CardRemoteDataSource {
   @override
   Future<void> addCard(CardModel card) async {
     try {
-      await dio.post('/cards', data: card.toJson());
+      await dio.post('/api/payment-cards', data: card.toJson());
     } catch (e) {
       throw Exception('Failed to add card');
     }
@@ -36,7 +36,7 @@ class CardRemoteDataSourceImpl implements CardRemoteDataSource {
   @override
   Future<void> deleteCard(String cardId) async {
     try {
-      await dio.delete('/cards/$cardId');
+      await dio.delete('/api/payment-cards/$cardId');
     } catch (e) {
       throw Exception('Failed to delete card');
     }

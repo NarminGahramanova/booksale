@@ -2,6 +2,7 @@ import 'package:booksale/core/theme/app_textstyle.dart';
 import 'package:booksale/presentation/page/cart/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../bloc/cart_bloc.dart';
 
@@ -14,7 +15,6 @@ class CartPage extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F5F5),
 
       appBar: AppBar(
-
         backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         scrolledUnderElevation: 0,
@@ -50,9 +50,7 @@ class CartPage extends StatelessWidget {
             );
 
             return Container(
-
               child: Column(
-
                 children: [
                   Expanded(
                     child: ListView.builder(
@@ -94,7 +92,10 @@ class CartPage extends StatelessWidget {
                           children: [
                             const Text(
                               'Cəmi:',
-                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
                             ),
 
                             Text(
@@ -116,7 +117,9 @@ class CartPage extends StatelessWidget {
                           height: 52,
 
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.push('/payment');
+                            },
 
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF007A6E),
@@ -128,7 +131,6 @@ class CartPage extends StatelessWidget {
 
                             child: const Text(
                               'Sifariş ver',
-
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -144,12 +146,9 @@ class CartPage extends StatelessWidget {
               ),
             );
           }
-
           return Container(
             color: AppColors.backgroundColor,
             child: const Center(
-
-               // child: CircularProgressIndicator(),
             ),
           );
         },

@@ -29,10 +29,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) async {
-  if (state is AuthSuccess) {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('isLoggedIn', true);
-  context.go(CustomNavigationHelper.mainPath);
+        if (state is AuthSuccess) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setBool('isLoggedIn', true);
+          await prefs.setString('userName', state.user['fullName'] ?? '');
+          await prefs.setString('userEmail', state.user['email'] ?? '');
+          context.go(CustomNavigationHelper.mainPath);
   }
       },
       builder: (context, state) {

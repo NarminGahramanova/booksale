@@ -4,3 +4,4 @@ part of 'add_bloc.dart';
 sealed class AddEvent {}
 final class PickFromCamera extends AddEvent{}
 final class PickFromGallery extends AddEvent{}
+

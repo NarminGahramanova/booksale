@@ -3,9 +3,7 @@ import 'package:booksale/domain/entities/book.dart';
 import 'package:booksale/data/repositories/book_repository_impl.dart';
 import 'package:meta/meta.dart';
 import '../../../../core/utils/mock_data.dart';
-
 part 'home_event.dart';
-
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {

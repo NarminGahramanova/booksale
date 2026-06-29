@@ -1,10 +1,7 @@
 import 'package:booksale/presentation/page/add/widget/from_field.dart';
 import 'package:booksale/presentation/page/add/widget/image_picker_screen.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
 import '../../../core/theme/app_colors.dart';
 import 'bloc/add_bloc.dart';
 

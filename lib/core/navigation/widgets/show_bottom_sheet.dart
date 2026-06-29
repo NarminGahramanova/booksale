@@ -1,41 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../presentation/page/add/bloc/add_bloc.dart';
+import 'package:booksale/presentation/page/add/bloc/add_bloc.dart';
 
 void showImagePickerSheet(BuildContext context) {
+  final addBloc = context.read<AddBloc>();
+
   showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
     ),
-    builder: (context) {
-      return SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.camera_alt),
-                title: const Text('Kameradan çək'),
-                onTap: () {
-                  Navigator.pop(context);
-                  context.read<AddBloc>().add(PickFromCamera());
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.photo_library),
-                title: const Text('Qalereyadan seç'),
-                onTap: () {
-                  Navigator.pop(context);
-                  context.read<AddBloc>().add(PickFromGallery());
-                },
-              ),
-            ],
+    builder: (_) => SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.camera_alt),
+            title: const Text('Kameradan çək'),
+            onTap: () {
+              Navigator.pop(context);
+              addBloc.add(PickFromCamera());
+            },
           ),
-        ),
-      );
-    },
+          ListTile(
+            leading: const Icon(Icons.photo_library),
+            title: const Text('Qalereyadan seç'),
+            onTap: () {
+              Navigator.pop(context);
+              addBloc.add(PickFromGallery());
+            },
+          ),
+        ],
+      ),
+    ),
   );
 }

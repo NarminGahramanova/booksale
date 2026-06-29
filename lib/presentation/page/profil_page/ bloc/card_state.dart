@@ -5,14 +5,14 @@ sealed class CardState {}
 
 final class CardInitial extends CardState {}
 
-final class CardsLoading extends CardState {}
+final class CardLoading extends CardState {}
 
-final class CardsLoaded extends CardState {
+final class CardLoaded extends CardState {
   final List<CardEntity> cards;
-  CardsLoaded({required this.cards});
+  CardLoaded({required this.cards});
 }
 
-final class CardsError extends CardState {
+final class CardError extends CardState {
   final String message;
-  CardsError(this.message);
+  CardError(this.message);
 }

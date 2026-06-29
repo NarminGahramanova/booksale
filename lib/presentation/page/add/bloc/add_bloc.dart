@@ -12,6 +12,7 @@ class AddBloc extends Bloc<AddEvent, AddState> {
   AddBloc() : super(AddInitial()) {
     on<PickFromCamera>(_onPickFromCamera);
     on<PickFromGallery>(_onPickFromGallery);
+
   }
 
   Future<void> _onPickFromCamera(
@@ -34,13 +35,20 @@ class AddBloc extends Bloc<AddEvent, AddState> {
       Emitter<AddState> emit,
       ) async {
     try {
+      print('📸 Qaleriya açılır...');                    // YENİ
       final XFile? file = await _picker.pickImage(source: ImageSource.gallery);
+      print('📸 Fayl seçildi: ${file?.path}');           // YENİ
       if (file != null) {
         _images.add(file.path);
         emit(ImageLoaded(images: List.from(_images)));
+        print('📸 State emit olundu: ${_images.length} şəkil');  // YENİ
+      } else {
+        print('📸 Fayl seçilmədi (null)');               // YENİ
       }
     } catch (e) {
+      print('📸 XƏTA: $e');                              // YENİ
       emit(ImageError(message: e.toString()));
     }
   }
+
 }

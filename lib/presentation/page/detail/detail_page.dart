@@ -28,7 +28,14 @@ class DetailPage extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Icon(Icons.favorite_border, color: AppColors.primaryBrown),
+            child: Row(
+              children: [
+                IconButton(onPressed: (){                       context.push('/cart');
+                }, icon:Icon( Icons.shopping_cart_outlined,color: AppColors.primaryBrown)),
+                SizedBox(width: 8,),
+                Icon(Icons.favorite_border, color: AppColors.primaryBrown),
+              ],
+            ),
           ),
         ],
         title: Text("Kitab Bazarı", style: AppTextstyle.appBarTitle),
@@ -150,7 +157,10 @@ class DetailPage extends StatelessWidget {
                           product: CartItem(book: book, quantity: 1),
                         ),
                       );
-                      context.push('/cart');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('${book.title} səbətə əlavə olundu!'),
+                        duration: Duration(seconds: 1),)
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryBrown,
