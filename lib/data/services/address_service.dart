@@ -19,7 +19,6 @@ class AddressService {
       }
       return [];
     } catch (e) {
-      print(' Xəta: $e');
       return [];
     }
   }
@@ -34,7 +33,7 @@ class AddressService {
       }
       return null;
     } catch (e) {
-      print('Xəta: $e');
+
       return null;
     }
   }
@@ -48,9 +47,7 @@ class AddressService {
         return response.data['data'];
       }
       return null;
-    } catch (e) {
-      print(' Xəta: $e');
-      return null;
+    } catch (e) { return null;
     }
   }
   static Future<bool> deleteAddress(String id) async {
@@ -58,7 +55,6 @@ class AddressService {
       final response = await _dio.delete(ApiEndpoints.address(id));
       return response.statusCode == 200;
     } catch (e) {
-      print(' Xəta: $e');
       return false;
     }
   }
@@ -69,7 +65,6 @@ class AddressService {
       );
       return response.statusCode == 200;
     } catch (e) {
-      print('Xəta: $e');
       return false;
     }
   }

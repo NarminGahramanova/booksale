@@ -31,7 +31,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         orders = await _repository.getOrders();
         if (orders.isEmpty) orders = [];
       } catch (e) {
-        print('API xətası: $e');
+
         orders = [];
       }
       emit(OrderLoaded(
@@ -41,7 +41,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         selectedIndex: 0,
       ));
     } catch (e) {
-      print('OrderBloc xətası: $e');
+
       emit(OrderError(message: e.toString()));
     }
   }

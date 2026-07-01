@@ -35,7 +35,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         books = await _repository.getAllBooks();
         if (books.isEmpty) books = mockBooks;
       } catch (e) {
-        print('API xətası: $e');
+
         books = mockBooks;
       }
 
@@ -48,7 +48,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
     } catch (e) {
-      print('HomeBloc xətası: $e');
       emit(HomeError(message: e.toString()));
     }
   }

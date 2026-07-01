@@ -36,7 +36,7 @@ class _AddressScreenState extends State<AddressScreen> {
         setState(() => addresses = list);
       }
     } catch (e) {
-      print(' Xəta: $e');
+
     }
     setState(() => isLoading = false);
   }
@@ -94,17 +94,14 @@ class _AddressScreenState extends State<AddressScreen> {
                                 iconBgColor: const Color(0xFFF5F5F5),
                                 isMain: address.isDefault,
                                 onEdit: () {
-                                  print(' Edit: ${address.title}');
-                                },
+                                   },
                                 onDelete: () {
-                                  print('Delete: ${address.title}');
-                                },
+                                 },
                               );
                             }).toList(),
                           const SizedBox(height: 4),
                           AddressMapSection(
                             onTap: () {
-                              print('Map tıklandı');
                             },
                           ),
                           const SizedBox(height: 16),
@@ -114,7 +111,7 @@ class _AddressScreenState extends State<AddressScreen> {
                   ),
                   AddAddressButton(
                     onTap: () {
-                      print('Add tıklandı');
+
                     },
                   ),
                 ],

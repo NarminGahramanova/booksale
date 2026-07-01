@@ -113,7 +113,7 @@ class _ForgetPage extends State<ForgetPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Email label
+
                      Text(
                       'E-poçt ünvanı',
                       style: AppTextstyle.cardLabel.copyWith(fontSize: 14,fontWeight: FontWeight.normal)
@@ -164,7 +164,7 @@ class _ForgetPage extends State<ForgetPage> {
                             final response = await dio.post('/api/auth/forgot-password', data: {
                               'email': _emailController.text.trim(),
                             });
-                            print('Response: ${response.data}');
+
                             if (response.statusCode == 200) {
                               context.go(CustomNavigationHelper.otpPath,extra: _emailController.text.trim());
                             } else {
