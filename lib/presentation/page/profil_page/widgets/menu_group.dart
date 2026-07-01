@@ -6,7 +6,7 @@ import 'menu_item.dart';
 class MenuGroup extends StatelessWidget {
   final List<MenuItem> items;
 
-  const MenuGroup({required this.items});
+  const MenuGroup({ super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {

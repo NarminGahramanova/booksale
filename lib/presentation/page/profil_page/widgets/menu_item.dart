@@ -6,7 +6,7 @@ class MenuItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isDanger;
 
-  const MenuItem({
+  const MenuItem({super.key,
     required this.icon,
     required this.title,
     required this.onTap,
