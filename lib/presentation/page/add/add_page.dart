@@ -42,6 +42,6 @@ class AddPage extends StatelessWidget {
         ),
         backgroundColor: AppColors.backgroundColor,
       ),
-    );;
+    );
   }
 }

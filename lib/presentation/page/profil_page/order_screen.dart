@@ -32,11 +32,11 @@ class OrderScreen extends StatelessWidget {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: state is OrderLoaded
-                        ? (state as OrderLoaded).categories.length
+                        ? (state).categories.length
                         : 0,
                     itemBuilder: (context, index) {
                       final isSelected = state is OrderLoaded
-                          ? (state as OrderLoaded).selectedIndex == index
+                          ? (state).selectedIndex == index
                           : false;
                       return Padding(
                         padding: const EdgeInsets.all(8.0),

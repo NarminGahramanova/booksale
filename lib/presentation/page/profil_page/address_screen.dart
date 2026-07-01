@@ -29,13 +29,11 @@ class _AddressScreenState extends State<AddressScreen> {
     setState(() => isLoading = true);
     try {
       final result = await AddressService.getAllAddresses();
-      if (result is List) {
-        final list = result
-            .map((addr) => AddressModel.fromJson(addr as Map<String, dynamic>))
-            .toList();
-        setState(() => addresses = list);
-      }
-    } catch (e) {
+      final list = result
+          .map((addr) => AddressModel.fromJson(addr as Map<String, dynamic>))
+          .toList();
+      setState(() => addresses = list);
+        } catch (e) {
       debugPrint('Address load error: $e');
     }
     setState(() => isLoading = false);
@@ -96,7 +94,7 @@ class _AddressScreenState extends State<AddressScreen> {
                                 onEdit: () {},
                                 onDelete: () {},
                               );
-                            }).toList(),
+                            }),
                           const SizedBox(height: 4),
                           AddressMapSection(onTap: () {}),
                           const SizedBox(height: 16),

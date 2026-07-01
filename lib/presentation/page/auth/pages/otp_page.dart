@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 class OtpPage extends StatefulWidget {
   final String email;
+
   const OtpPage({super.key, required this.email});
 
   @override
@@ -14,16 +15,24 @@ class OtpPage extends StatefulWidget {
 }
 
 class _OtpPageState extends State<OtpPage> {
-  final List<TextEditingController> _controllers =
-  List.generate(4, (_) => TextEditingController());
+  final List<TextEditingController> _controllers = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
   String get _otpCode => _controllers.map((c) => c.text).join();
 
   @override
   void dispose() {
-    for (final c in _controllers) c.dispose();
-    for (final f in _focusNodes) f.dispose();
+    for (final c in _controllers) {
+      c.dispose();
+    }
+
+    for (final f in _focusNodes) {
+      f.dispose();
+    }
+
     super.dispose();
   }
 
@@ -32,23 +41,21 @@ class _OtpPageState extends State<OtpPage> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is OtpVerifySuccess) {
-          context.go('/reset-password', extra: {
-            'email': widget.email,
-            'resetToken': state.resetToken,
-          });
-        } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
+          context.go(
+            '/reset-password',
+            extra: {'email': widget.email, 'resetToken': state.resetToken},
           );
+        } else if (state is AuthFailure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
         }
       },
       builder: (context, state) {
         return Scaffold(
-
           body: Padding(
-            padding: const EdgeInsets.only(left: 24.0,right: 24,top: 100),
+            padding: const EdgeInsets.only(left: 24.0, right: 24, top: 100),
             child: SingleChildScrollView(
-
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -60,7 +67,11 @@ class _OtpPageState extends State<OtpPage> {
                       color: AppColors.primaryBrown,
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Icon(Icons.lock_outline, color: Colors.white, size: 36),
+                    child: const Icon(
+                      Icons.lock_outline,
+                      color: Colors.white,
+                      size: 36,
+                    ),
                   ),
                   const SizedBox(height: 24),
                   Text('Kodu daxil edin', style: AppTextstyle.headingMedium),
@@ -88,7 +99,9 @@ class _OtpPageState extends State<OtpPage> {
                             counterText: '',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color(0xFFB8C1BC)),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFB8C1BC),
+                              ),
                             ),
                           ),
                           onChanged: (val) {
@@ -111,20 +124,24 @@ class _OtpPageState extends State<OtpPage> {
                       onPressed: state is AuthLoading
                           ? null
                           : () {
-                        context.read<AuthBloc>().add(OtpVerifyRequested(
-                          email: widget.email,
-                          otpCode: _otpCode,
-                        ));
-                      },
+                              context.read<AuthBloc>().add(
+                                OtpVerifyRequested(
+                                  email: widget.email,
+                                  otpCode: _otpCode,
+                                ),
+                              );
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.priceColor,
                       ),
                       child: state is AuthLoading
                           ? const CircularProgressIndicator(color: Colors.white)
                           : Text(
-                        'Təsdiqlə',
-                        style: AppTextstyle.bestseller.copyWith(color: Colors.white),
-                      ),
+                              'Təsdiqlə',
+                              style: AppTextstyle.bestseller.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ),
 

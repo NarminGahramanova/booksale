@@ -50,7 +50,7 @@ class DetailPage extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    Container(
+                    SizedBox(
                       width: 350,
                       height: 400,
                       child: Image.network(book.imageUrl),

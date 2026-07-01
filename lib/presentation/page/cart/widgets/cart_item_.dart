@@ -49,101 +49,99 @@ class CartPage extends StatelessWidget {
               (sum, item) => sum + item.book.price * item.quantity,
             );
 
-            return Container(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(top: 8),
-                      itemCount: state.items.length,
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(top: 8),
+                    itemCount: state.items.length,
 
-                      itemBuilder: (context, index) {
-                        final item = state.items[index];
+                    itemBuilder: (context, index) {
+                      final item = state.items[index];
 
-                        return CartItemWidget(item: item);
-                      },
+                      return CartItemWidget(item: item);
+                    },
+                  ),
+                ),
+
+                Container(
+                  padding: const EdgeInsets.all(20),
+
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(24),
                     ),
+
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.08),
+                        blurRadius: 12,
+                        offset: const Offset(0, -4),
+                      ),
+                    ],
                   ),
 
-                  Container(
-                    padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                    decoration: BoxDecoration(
-                      color: Colors.white,
+                        children: [
+                          const Text(
+                            'Cəmi:',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
 
-                      borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(24),
+                          Text(
+                            '${total.toStringAsFixed(2)} AZN',
+
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF007A6E),
+                            ),
+                          ),
+                        ],
                       ),
 
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.08),
-                          blurRadius: 12,
-                          offset: const Offset(0, -4),
-                        ),
-                      ],
-                    ),
+                      const SizedBox(height: 16),
 
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      SizedBox(
+                        width: double.infinity,
+                        height: 52,
 
-                          children: [
-                            const Text(
-                              'Cəmi:',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                              ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.push('/payment');
+                          },
+
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF007A6E),
+
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
                             ),
+                          ),
 
-                            Text(
-                              '${total.toStringAsFixed(2)} AZN',
-
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF007A6E),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 16),
-
-                        SizedBox(
-                          width: double.infinity,
-                          height: 52,
-
-                          child: ElevatedButton(
-                            onPressed: () {
-                              context.push('/payment');
-                            },
-
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF007A6E),
-
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-
-                            child: const Text(
-                              'Sifariş ver',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                          child: const Text(
+                            'Sifariş ver',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           }
           return Container(

@@ -1,9 +1,7 @@
 import 'package:booksale/core/navigation/custom_navigation_helper.dart';
 import 'package:booksale/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/theme/app_textstyle.dart';
 
 class PasswordUpdatedPage extends StatelessWidget {
