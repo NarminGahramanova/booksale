@@ -14,24 +14,29 @@ class BookRemoteDatasource {
     int page = 1,
     int pageSize = 20,
   }) async {
-    final res = await _dio.get('/api/books', queryParameters: {
-      if (search != null) 'Search': search,
-      if (categoryId != null) 'CategoryId': categoryId,
-      if (minPrice != null) 'MinPrice': minPrice,
-      if (maxPrice != null) 'MaxPrice': maxPrice,
-      if (featured != null) 'Featured': featured,
-      if (sort != null) 'Sort': sort,
-      'Page': page,
-      'PageSize': pageSize,
-    });
+    final res = await _dio.get(
+      '/api/books',
+      queryParameters: {
+        'Search': ?search,
+        'CategoryId': ?categoryId,
+        'MinPrice': ?minPrice,
+        'MaxPrice': ?maxPrice,
+        'Featured': ?featured,
+        'Sort': ?sort,
+        'Page': page,
+        'PageSize': pageSize,
+      },
+    );
 
     final List items = res.data['items'];
     return items.map((e) => BookModel.fromJson(e)).toList();
   }
 
   Future<List<BookModel>> getFeaturedBooks({int limit = 10}) async {
-    final res = await _dio.get('/api/books/featured',
-        queryParameters: {'limit': limit});
+    final res = await _dio.get(
+      '/api/books/featured',
+      queryParameters: {'limit': limit},
+    );
     return (res.data as List).map((e) => BookModel.fromJson(e)).toList();
   }
 
