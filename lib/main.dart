@@ -11,7 +11,6 @@ import 'core/storage/local_stroage.dart';
 import 'package:booksale/data/datasources/book_local_datasource.dart';
 import 'package:booksale/core/constants/hive_box.dart';
 import 'core/theme/app_colors.dart';
-import 'core/utils/mock_data.dart';
 import 'data/datasources/card_remote_datasource.dart';
 import 'data/repositories/card_repository_impl.dart';
 import 'domain/usecases/add_card_usecase.dart';
@@ -24,13 +23,13 @@ void main() async {
   final storage = HiveLocalStorage();
   await storage.init();
 
-  final bookDataSource = BookLocalDataSource(storage.getBox(HiveBoxes.books));
+  // final bookDataSource = BookLocalDataSource(storage.getBox(HiveBoxes.books));
 
-  if (bookDataSource.getAllBooks().isEmpty) {
-    for (final book in mockBooks) {
-      // await bookDataSource.saveBook(BookModel.fromEntity(book).toJson());
-    }
-  }
+  // if (bookDataSource.getAllBooks().isEmpty) {
+  //   for (final book in mockBooks) {
+  //   // await bookDataSource.saveBook(BookModel.fromEntity(book).toJson());
+  //   }
+  // }
   runApp(MyApp());
 }
 

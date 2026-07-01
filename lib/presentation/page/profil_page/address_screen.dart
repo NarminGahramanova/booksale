@@ -35,7 +35,9 @@ class _AddressScreenState extends State<AddressScreen> {
             .toList();
         setState(() => addresses = list);
       }
-    } catch (e) {}
+    } catch (e) {
+      debugPrint('Address load error: $e');
+    }
     setState(() => isLoading = false);
   }
 
@@ -91,27 +93,18 @@ class _AddressScreenState extends State<AddressScreen> {
                                 icon: Icons.location_on_outlined,
                                 iconBgColor: const Color(0xFFF5F5F5),
                                 isMain: address.isDefault,
-                                onEdit: () {
-                                   },
-                                onDelete: () {
-                                 },
+                                onEdit: () {},
+                                onDelete: () {},
                               );
                             }).toList(),
                           const SizedBox(height: 4),
-                          AddressMapSection(
-                            onTap: () {
-                            },
-                          ),
+                          AddressMapSection(onTap: () {}),
                           const SizedBox(height: 16),
                         ],
                       ),
                     ),
                   ),
-                  AddAddressButton(
-                    onTap: () {
-
-                    },
-                  ),
+                  AddAddressButton(onTap: () {}),
                 ],
               ),
             ),

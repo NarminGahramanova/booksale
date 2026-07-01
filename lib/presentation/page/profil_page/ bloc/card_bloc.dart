@@ -43,7 +43,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
 
     try {
       await addCardUseCase(event.newCard);
-    } catch (e) {}
+    } catch (e) {emit(CardError(e.toString()));}
   }
 
   Future<void> _onDeletedCard(
@@ -52,7 +52,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
   ) async {
     if (state is CardLoaded) {
       final currentCards = (state as CardLoaded).cards;
-      for (var c in currentCards) {}
+
 
       final updatedCards = currentCards
           .where((card) => card.id != event.cardId)
