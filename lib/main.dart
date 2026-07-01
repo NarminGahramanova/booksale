@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/dio/api_client.dart';
 import 'core/storage/local_stroage.dart';
-import 'package:booksale/data/datasources/book_local_datasource.dart';
-import 'package:booksale/core/constants/hive_box.dart';
 import 'core/theme/app_colors.dart';
 import 'data/datasources/card_remote_datasource.dart';
 import 'data/repositories/card_repository_impl.dart';
