@@ -60,7 +60,7 @@ final appRouter = GoRouter(
     GoRoute(
       path: CustomNavigationHelper.updatedPath,
       builder: (context, state) {
-        final extra = state.extra as Map<String, dynamic>;
+        // final extra = state.extra as Map<String, dynamic>;
         return PasswordUpdatedPage();
       },
     ),

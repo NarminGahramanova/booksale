@@ -1,4 +1,3 @@
-import 'package:booksale/domain/entities/cart.dart';
 
 class Order {
   final String id;

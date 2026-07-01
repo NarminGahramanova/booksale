@@ -15,19 +15,13 @@ class SplashPage extends StatelessWidget {
 
     final storage = HiveLocalStorage();
     final token = storage.getAccountToken();
+    if (!context.mounted) return;
     if (context.mounted) {
-      if (isLoggedIn) {
+      if (isLoggedIn && token != null) {
         context.go(CustomNavigationHelper.mainPath);
       } else {
         context.go(CustomNavigationHelper.loginPath);
       }
-    }
-
-    if (!context.mounted) return;
-    if (isLoggedIn) {
-      context.go(CustomNavigationHelper.mainPath);
-    } else {
-      context.go(CustomNavigationHelper.loginPath);
     }
   }
 

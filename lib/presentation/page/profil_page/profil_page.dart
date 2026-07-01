@@ -26,7 +26,6 @@ class ProfilPage extends StatelessWidget {
       builder: (context, snapshot) {
         final name = snapshot.data?['name'] ?? ' ';
         final email = snapshot.data?['email'] ?? '';
-        final isLoggedIn = snapshot.data?['isLoggedIn'] == true;
 
         return Scaffold(
           appBar: AppBar(
