@@ -49,11 +49,11 @@ class _MainPageState extends State<MainPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(Icons.home, 'Home', 0),
-              _buildNavItem(Icons.favorite, 'Favourites', 1),
+              _buildNavItem(Icons.home, 'Əsas', 0),
+              _buildNavItem(Icons.favorite, 'Sevimlilər', 1),
               const SizedBox(width: 40),
-              _buildNavItem(Icons.shopping_cart, 'Cart', 3),
-              _buildNavItem(Icons.person, 'Profile', 4),
+              _buildNavItem(Icons.shopping_cart, 'Səbət', 3),
+              _buildNavItem(Icons.person, 'Profil', 4),
             ],
           ),
         ),

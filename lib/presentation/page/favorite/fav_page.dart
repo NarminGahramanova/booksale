@@ -23,7 +23,7 @@ class FavPage extends StatelessWidget {
               mainAxisAlignment:MainAxisAlignment.center,
               children: [
                 Icon(Icons.notifications_off_sharp),
-                Text('Favorilər boşdur', style: AppTextstyle.caption),
+                Text('Sevimlilər boşdur', style: AppTextstyle.caption),
               ],
             ),
           ),

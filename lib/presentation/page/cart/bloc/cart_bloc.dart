@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import '../../../../domain/entities/cart.dart';
 
 part 'cart_event.dart';
+
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
@@ -12,12 +13,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<AddToCartEvent>(_onAddToCart);
     on<RemoveFromCartEvent>(_onRemoveFromCart);
     on<ClearCartEvent>(_onClearCart);
-    on<DecreaseQuantityEvent>(_onDecreaseQuantity); // ← bura
+    on<DecreaseQuantityEvent>(_onDecreaseQuantity);
   }
 
   void _onAddToCart(AddToCartEvent event, Emitter<CartState> emit) {
-    final existingIndex =
-    _items.indexWhere((item) => item.book.id == event.product.book.id);
+    final existingIndex = _items.indexWhere(
+      (item) => item.book.id == event.product.book.id,
+    );
     if (existingIndex >= 0) {
       _items[existingIndex].quantity++;
     } else {
@@ -36,7 +38,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     emit(CartUpdated(items: []));
   }
 
-  void _onDecreaseQuantity(DecreaseQuantityEvent event, Emitter<CartState> emit) {
+  void _onDecreaseQuantity(
+    DecreaseQuantityEvent event,
+    Emitter<CartState> emit,
+  ) {
     final index = _items.indexWhere((item) => item.book.id == event.productId);
     if (index >= 0) {
       if (_items[index].quantity > 1) {

@@ -87,7 +87,7 @@ class DetailPage extends StatelessWidget {
                         child: Divider(color: AppColors.priceColor),
                       ),
                       SizedBox(width: 10),
-                      Text('BESTSELLER', style: AppTextstyle.bestseller),
+                      Text('Ən çox satılanlar', style: AppTextstyle.bestseller),
                     ],
                   ),
                 ),
