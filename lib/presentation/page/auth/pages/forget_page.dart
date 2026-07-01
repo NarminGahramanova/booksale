@@ -16,11 +16,11 @@ class ForgetPage extends StatefulWidget {
 
 class _ForgetPage extends State<ForgetPage> {
   final _emailController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
 
   static const Color primaryGreen = Color(0xFF1D6B4E);
-  static const Color lightGreen = Color(0xFFE1F5EE);
-  static const Color bgColor = Color(0xFFF5F7F5);
+  // static const Color lightGreen = Color(0xFFE1F5EE);
+  // static const Color bgColor = Color(0xFFF5F7F5);
 
   @override
   void dispose() {
