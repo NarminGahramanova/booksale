@@ -166,13 +166,14 @@ class _ForgetPage extends State<ForgetPage> {
                             });
 
                             if (response.statusCode == 200) {
+                              if (!context.mounted) return;
                               context.go(CustomNavigationHelper.otpPath,extra: _emailController.text.trim());
-                            } else {
+                            } else {if (!context.mounted) return;
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text('Xəta baş verdi')),
                               );
                             }
-                          } catch (e) {
+                          } catch (e) {if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Xəta: $e')),
                             );

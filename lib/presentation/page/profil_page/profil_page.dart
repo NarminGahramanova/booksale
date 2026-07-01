@@ -111,6 +111,7 @@ class ProfilPage extends StatelessWidget {
                                   onPressed: () async {
                                     final prefs = await SharedPreferences.getInstance();
                                     await prefs.clear();
+                                    if (!context.mounted) return;
                                     context.go(CustomNavigationHelper.loginPath);
                                   },
                                   style: TextButton.styleFrom(

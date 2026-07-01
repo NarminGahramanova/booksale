@@ -34,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
           await prefs.setBool('isLoggedIn', true);
           await prefs.setString('userName', state.user['fullName'] ?? '');
           await prefs.setString('userEmail', state.user['email'] ?? '');
+          if (!context.mounted) return;
           context.go(CustomNavigationHelper.mainPath);
   }
       },
