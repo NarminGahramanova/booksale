@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: AppColors.backgroundColor,
           colorScheme: ColorScheme.fromSeed(
             seedColor: AppColors.backgroundColor,
-            background: AppColors.backgroundColor,
+            surface: AppColors.backgroundColor,
           ),
         ),
       ),

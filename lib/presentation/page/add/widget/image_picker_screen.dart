@@ -46,12 +46,12 @@ class Imagepickerscreen extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.add_a_photo_outlined,
-                        color: AppColors.primaryBrown.withOpacity(0.4),
+                        color: AppColors.primaryBrown.withValues(alpha: 0.4),
                         size: 40,
                       ),
                       Icon(
                         Icons.image,
-                        color: AppColors.primaryBrown.withOpacity(0.4),
+                        color: AppColors.primaryBrown.withValues(alpha: 0.4),
                         size: 40,
                       ),
                     ],

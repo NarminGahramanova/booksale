@@ -33,7 +33,7 @@ class AddressMapSection extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 20, vertical: 12),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.92),
+                    color: Colors.white.withValues(alpha: 0.92),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(

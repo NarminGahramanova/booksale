@@ -97,7 +97,7 @@ class FromField extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 hintText: hint,
-                hintStyle: TextStyle(color: Colors.grey.withOpacity(0.7)),
+                hintStyle: TextStyle(color: Colors.grey.withValues(alpha: 0.7)),
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 18,

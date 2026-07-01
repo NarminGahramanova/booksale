@@ -35,9 +35,7 @@ class _AddressScreenState extends State<AddressScreen> {
             .toList();
         setState(() => addresses = list);
       }
-    } catch (e) {
-
-    }
+    } catch (e) {}
     setState(() => isLoading = false);
   }
 
