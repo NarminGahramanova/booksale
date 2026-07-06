@@ -1,5 +1,6 @@
+import 'package:equatable/equatable.dart';
 
-class Order {
+class Order extends Equatable {
   final String id;
   final String orderNumber;
   final String deliveryAddress;
@@ -11,7 +12,7 @@ class Order {
   final DateTime createdAt;
   final int itemCount;
 
-  Order({
+  const Order({
     required this.id,
     required this.items,
     required this.orderNumber,
@@ -23,9 +24,23 @@ class Order {
     required this.createdAt,
     required this.itemCount,
   });
+
+  @override
+  List<Object?> get props => [
+    id,
+    orderNumber,
+    deliveryAddress,
+    deliveryMethod,
+    paymentMethod,
+    status,
+    items,
+    total,
+    createdAt,
+    itemCount,
+  ];
 }
 
-class OrderItem {
+class OrderItem extends Equatable{
   final String bookId;
   final String title;
   final String author;
@@ -33,7 +48,7 @@ class OrderItem {
   final double price;
   final int quantity;
 
-  OrderItem({
+  const OrderItem({
     required this.bookId,
     required this.title,
     required this.author,
@@ -41,4 +56,14 @@ class OrderItem {
     required this.price,
     required this.quantity,
   });
+
+  @override
+  List<Object?> get props => [
+    bookId,
+    title,
+    author,
+    coverImageUrl,
+    price,
+    quantity,
+  ];
 }

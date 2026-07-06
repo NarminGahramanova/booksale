@@ -11,7 +11,7 @@ class CartRepoImpl implements CartRepo {
   @override
   Future<Cart> getCart() async {
     final maps = dataSource.getAllCartItems();
-    final items = maps.map((e) => CartItemModel.fromJson(e).toEntity()).toList();
+    final items = maps.map((e) => CartItemModel.fromJson(e)).toList();
     return Cart(items: items);
   }
 

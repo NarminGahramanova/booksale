@@ -1,68 +1,26 @@
 import 'package:booksale/domain/entities/book.dart';
 
-class BookModel {
-  final String id;
-  final String title;
-  final String author;
-  final String description;
-  final double price;
-  final String currency;
-  final String imageUrl;
-  final String category;
-  final String categoryName;
-  final int stock;
-  final String isbn;
-  final String publisher;
-  final int pageCount;
-  final String language;
-  final int publishedYear;
-  final double rating;
-  final int reviewCount;
-  final bool isFavorited;
-
-  BookModel({
-    required this.id,
-    required this.title,
-    required this.author,
-    required this.description,
-    required this.price,
-    required this.currency,
-    required this.imageUrl,
-    required this.category,
-    required this.categoryName,
-    required this.stock,
-    required this.isbn,
-    required this.publisher,
-    required this.pageCount,
-    required this.language,
-    required this.publishedYear,
-    required this.rating,
-    required this.reviewCount,
-    required this.isFavorited,
+class BookModel extends Book {
+  const BookModel({
+    required super.id,
+    required super.title,
+    required super.author,
+    required super.description,
+    required super.price,
+    required super.currency,
+    required super.imageUrl,
+    required super.category,
+    required super.categoryName,
+    required super.stock,
+    required super.isbn,
+    required super.publisher,
+    required super.pageCount,
+    required super.language,
+    required super.publishedYear,
+    required super.rating,
+    required super.reviewCount,
+    required super.isFavorited,
   });
-
-  Book toEntity() {
-    return Book(
-      id: id,
-      title: title,
-      author: author,
-      description: description,
-      price: price,
-      currency: currency,
-      imageUrl: imageUrl,
-      category: category,
-      categoryName: categoryName,
-      stock: stock,
-      isbn: isbn,
-      publisher: publisher,
-      pageCount: pageCount,
-      language: language,
-      publishedYear: publishedYear,
-      rating: rating,
-      reviewCount: reviewCount,
-      isFavorited: isFavorited,
-    );
-  }
 
   factory BookModel.fromEntity(Book book) {
     return BookModel(

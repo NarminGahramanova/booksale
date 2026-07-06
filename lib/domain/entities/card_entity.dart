@@ -1,4 +1,6 @@
-class CardEntity {
+import 'package:equatable/equatable.dart';
+
+class CardEntity extends Equatable{
   final String id;
   final String cardNumber;
   final String cardHolder;
@@ -6,7 +8,7 @@ class CardEntity {
   final String cardType;
   final bool isDefault;
 
-  CardEntity({
+  const CardEntity({
     required this.id,
     required this.cardNumber,
     required this.cardHolder,
@@ -14,4 +16,15 @@ class CardEntity {
     required this.cardType,
     required this.isDefault,
   });
+
+  @override
+  List<Object?> get props => [
+    id,
+    cardNumber,
+    cardHolder,
+    expiryDate,
+    cardType,
+    isDefault,
+
+  ];
 }

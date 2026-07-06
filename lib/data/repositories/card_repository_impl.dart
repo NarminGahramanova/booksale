@@ -10,40 +10,24 @@ class CardRepositoryImpl implements CardRepository {
 
   @override
   Future<List<CardEntity>> getCards() async {
-    final models = await remoteDataSource.getCards();
-    return models.map((model) => _modelToEntity(model)).toList();
+    return await remoteDataSource.getCards();
   }
 
   @override
   Future<void> addCard(CardEntity card) async {
-    final model = _entityToModel(card);
+    final model = CardModel(
+      id: card.id,
+      cardNumber: card.cardNumber,
+      cardHolder: card.cardHolder,
+      expiryDate: card.expiryDate,
+      cardType: card.cardType,
+      isDefault: card.isDefault,
+    );
     await remoteDataSource.addCard(model);
   }
 
   @override
   Future<void> deleteCard(String cardId) async {
     await remoteDataSource.deleteCard(cardId);
-  }
-
-  CardEntity _modelToEntity(CardModel model) {
-    return CardEntity(
-      id: model.id,
-      cardNumber: model.cardNumber,
-      cardHolder: model.cardHolder,
-      expiryDate: model.expiryDate,
-      cardType: model.cardType,
-      isDefault: model.isDefault,
-    );
-  }
-
-  CardModel _entityToModel(CardEntity entity) {
-    return CardModel(
-      id: entity.id,
-      cardNumber: entity.cardNumber,
-      cardHolder: entity.cardHolder,
-      expiryDate: entity.expiryDate,
-      cardType: entity.cardType,
-      isDefault: entity.isDefault,
-    );
   }
 }

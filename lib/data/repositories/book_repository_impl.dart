@@ -8,22 +8,21 @@ class BookRepositoryImpl implements BookRepo {
   @override
   Future<List<Book>> getAllBooks() async {
     final models = await _datasource.getBooks();
-    return models.map((e) => e.toEntity()).toList();
-  }
+    return models;  }
 
   @override
   Future<Book?> getBookById(String id) async {
     final model = await _datasource.getBookById(id);
-    return model.toEntity();
+    return model;
   }
 
   @override
   Future<void> addBook(Book book) async {
-    // TODO: API hazır olanda
+
   }
 
   @override
   Future<void> deleteBook(String id) async {
-    // TODO: API hazır olanda
+
   }
 }

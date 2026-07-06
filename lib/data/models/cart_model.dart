@@ -1,21 +1,11 @@
 import 'package:booksale/domain/entities/cart.dart';
 import 'book_model.dart';
 
-class CartItemModel {
-  final BookModel book;
-  final int quantity;
-
+class CartItemModel extends CartItem {
   CartItemModel({
-    required this.book,
-    required this.quantity,
+    required BookModel super.book,
+    required super.quantity,
   });
-
-  CartItem toEntity() {
-    return CartItem(
-      book: book.toEntity(),
-      quantity: quantity,
-    );
-  }
 
   factory CartItemModel.fromEntity(CartItem item) {
     return CartItemModel(
@@ -26,7 +16,7 @@ class CartItemModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'book': book.toJson(),
+      'book': (book as BookModel).toJson(),
       'quantity': quantity,
     };
   }
@@ -39,16 +29,8 @@ class CartItemModel {
   }
 }
 
-class CartModel {
-  final List<CartItemModel> items;
-
-  CartModel({required this.items});
-
-  Cart toEntity() {
-    return Cart(
-      items: items.map((e) => e.toEntity()).toList(),
-    );
-  }
+class CartModel extends Cart {
+  const CartModel({required super.items});
 
   factory CartModel.fromEntity(Cart cart) {
     return CartModel(
@@ -58,7 +40,7 @@ class CartModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'items': items.map((e) => e.toJson()).toList(),
+      'items': items.map((e) => (e as CartItemModel).toJson()).toList(),
     };
   }
 

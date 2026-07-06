@@ -1,32 +1,14 @@
 import '../../domain/entities/order.dart';
 
-class OrderItemModel {
-  final String bookId;
-  final String title;
-  final String author;
-  final String coverImageUrl;
-  final double price;
-  final int quantity;
-
-  OrderItemModel({
-    required this.bookId,
-    required this.title,
-    required this.author,
-    required this.coverImageUrl,
-    required this.price,
-    required this.quantity,
+class OrderItemModel extends OrderItem {
+  const OrderItemModel({
+    required super.bookId,
+    required super.title,
+    required super.author,
+    required super.coverImageUrl,
+    required super.price,
+    required super.quantity,
   });
-
-  OrderItem toEntity() {
-    return OrderItem(
-      bookId: bookId,
-      title: title,
-      author: author,
-      coverImageUrl: coverImageUrl,
-      price: price,
-      quantity: quantity,
-    );
-  }
 
   factory OrderItemModel.fromEntity(OrderItem item) {
     return OrderItemModel(
@@ -50,7 +32,6 @@ class OrderItemModel {
     );
   }
 
-
   Map<String, dynamic> toJson() {
     return {
       'bookId': bookId,
@@ -63,29 +44,18 @@ class OrderItemModel {
   }
 }
 
-class OrderModel {
-  final String id;
-  final String orderNumber;
-  final String deliveryAddress;
-  final String deliveryMethod;
-  final double total;
-  final String paymentMethod;
-  final String status;
-  final List<OrderItemModel> items;
-  final DateTime createdAt;
-  final int itemCount;
-
-  OrderModel({
-    required this.id,
-    required this.orderNumber,
-    required this.deliveryAddress,
-    required this.deliveryMethod,
-    required this.total,
-    required this.paymentMethod,
-    required this.status,
-    required this.items,
-    required this.createdAt,
-    required this.itemCount,
+class OrderModel extends Order {
+  const OrderModel({
+    required super.id,
+    required super.orderNumber,
+    required super.deliveryAddress,
+    required super.deliveryMethod,
+    required super.total,
+    required super.paymentMethod,
+    required super.status,
+    required super.items,
+    required super.createdAt,
+    required super.itemCount,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {

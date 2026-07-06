@@ -1,18 +1,13 @@
-class CardModel {
-  final String id;
-  final String cardNumber;
-  final String cardHolder;
-  final String expiryDate;
-  final String cardType;
-  final bool isDefault;
+import 'package:booksale/domain/entities/card_entity.dart';
 
-  CardModel({
-    required this.id,
-    required this.cardNumber,
-    required this.cardHolder,
-    required this.expiryDate,
-    required this.cardType,
-    required this.isDefault,
+class CardModel extends CardEntity {
+  const CardModel({
+    required super.id,
+    required super.cardNumber,
+    required super.cardHolder,
+    required super.expiryDate,
+    required super.cardType,
+    required super.isDefault,
   });
 
   factory CardModel.fromJson(Map<String, dynamic> json) {
