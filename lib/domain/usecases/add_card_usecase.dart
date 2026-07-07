@@ -1,3 +1,4 @@
+import 'package:booksale/core/utils/result.dart';
 import 'package:booksale/domain/entities/card_entity.dart';
 import 'package:booksale/domain/repositories/card_repository.dart';
 
@@ -6,7 +7,7 @@ class AddCardUseCase {
 
   AddCardUseCase({required this.repository});
 
-  Future<void> call(CardEntity card) async {
+  Future<Result<void>> call(CardEntity card) async {
     return await repository.addCard(card);
   }
 }
