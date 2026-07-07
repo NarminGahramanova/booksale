@@ -2,12 +2,16 @@ import 'package:booksale/core/error/failures.dart';
 import 'package:booksale/core/utils/result.dart';
 import 'package:booksale/domain/entities/book.dart';
 import 'package:booksale/domain/repositories/book_repo.dart';
+import '../../core/dio/api_client.dart';
 import '../datasources/book_remote_datasource.dart';
 import '../models/book_model.dart';
 
 class BookRepositoryImpl implements BookRepo {
-  final _datasource = BookRemoteDatasource();
+  final BookRemoteDatasource _datasource;
 
+
+  BookRepositoryImpl({BookRemoteDatasource? datasource})
+      : _datasource = datasource ?? BookRemoteDatasourceImpl(dio: ApiClient().dio);
   @override
   Future<Result<List<Book>>> getAllBooks() async {
   try{
