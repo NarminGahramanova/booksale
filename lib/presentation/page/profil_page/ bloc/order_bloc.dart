@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:booksale/core/utils/result.dart';
 import 'package:booksale/domain/entities/order.dart';
 import 'package:meta/meta.dart';
 import '../../../../data/repositories/order_repository_impl.dart';
@@ -21,33 +22,33 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     'Çatdırılıb',
     'Ləğv edilib',
   ];
+
   Future<void> _onLoadOrders(
-      LoadOrders event,
-      Emitter<OrderState> emit) async {
+      LoadOrders event, Emitter<OrderState> emit) async {
     emit(OrderLoading());
-    try {
-      List<Order> orders;
-      try {
-        orders = await _repository.getOrders();
-        if (orders.isEmpty) orders = [];
-      } catch (e) {
 
-        orders = [];
-      }
-      emit(OrderLoaded(
-        categories: _categoriesForOrder,
-        allOrders: orders,
-        filteredOrders: orders,
-        selectedIndex: 0,
-      ));
-    } catch (e) {
+    final result = await _repository.getOrders();
 
-      emit(OrderError(message: e.toString()));
+    switch (result) {
+      case Success(data: final orders):
+        emit(OrderLoaded(
+          categories: _categoriesForOrder,
+          allOrders: orders,
+          filteredOrders: orders,
+          selectedIndex: 0,
+        ));
+      case Error():
+        emit(OrderLoaded(
+          categories: _categoriesForOrder,
+          allOrders: const [],
+          filteredOrders: const [],
+          selectedIndex: 0,
+        ));
     }
   }
+
   void _onCategorySelected(
-      OrderCategorySelected event,
-      Emitter<OrderState> emit) {
+      OrderCategorySelected event, Emitter<OrderState> emit) {
     if (state is OrderLoaded) {
       final current = state as OrderLoaded;
       final filtered = event.index == 0
@@ -63,13 +64,14 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
   }
 
   Future<void> _onCancelOrder(
-      CancelOrder event,
-      Emitter<OrderState> emit) async {
-    try {
-      await _repository.cancelOrder(event.id as String);
-      add(LoadOrders());
-    } catch (e) {
-      emit(OrderError(message: e.toString()));
+      CancelOrder event, Emitter<OrderState> emit) async {
+    final result = await _repository.cancelOrder(event.id.toString());
+
+    switch (result) {
+      case Success():
+        add(LoadOrders());
+      case Error(failure: final failure):
+        emit(OrderError(message: failure.message));
     }
   }
 }

@@ -1,10 +1,12 @@
 import 'package:booksale/domain/entities/order.dart';
 
+import '../../core/utils/result.dart';
+
 abstract class OrderRepo {
-  Future<List<Order>> getOrders();
-  Future<Order?> getOrderById(String id);
-  Future<void> cancelOrder(String id);
-  Future<void> repeatOrder(String id);
+  Future<Result<List<Order>>> getOrders();
+  Future<Result<Order?>> getOrderById(String id);
+  Future<Result<void>>cancelOrder(String id);
+  Future<Result<void>> repeatOrder(String id);
 
 
 }
