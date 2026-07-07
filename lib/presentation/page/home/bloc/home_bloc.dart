@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:booksale/core/utils/result.dart';
 import 'package:booksale/domain/entities/book.dart';
 import 'package:booksale/data/repositories/book_repository_impl.dart';
 import 'package:meta/meta.dart';
@@ -29,27 +30,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onLoadBooks(LoadBooks event, Emitter<HomeState> emit) async {
     emit(HomeLoading());
-    try {
-      List<Book> books;
-      try {
-        books = await _repository.getAllBooks();
-        if (books.isEmpty) books = mockBooks;
-      } catch (e) {
 
+    final result = await _repository.getAllBooks();
+
+    final List<Book> books;
+    switch (result) {
+      case Success(data: final data):
+        books = data.isEmpty ? mockBooks : data;
+      case Error():
         books = mockBooks;
-      }
-
-      emit(
-        HomeLoaded(
-          categories: _categories,
-          allBooks: books,
-          filteredBooks: books,
-          selectedIndex: 0,
-        ),
-      );
-    } catch (e) {
-      emit(HomeError(message: e.toString()));
     }
+
+    emit(
+      HomeLoaded(
+        categories: _categories,
+        allBooks: books,
+        filteredBooks: books,
+        selectedIndex: 0,
+      ),
+    );
   }
 
   void _onCategorySelected(CategorySelected event, Emitter<HomeState> emit) {

@@ -44,4 +44,12 @@ class BookRemoteDatasource {
     final res = await _dio.get('/api/books/$id');
     return BookModel.fromJson(res.data);
   }
+  Future<BookModel> addBook(BookModel book) async {
+    final res = await _dio.post('/api/books', data: book.toJson());
+    return BookModel.fromJson(res.data);
+  }
+
+  Future<void> deleteBook(String id) async {
+    await _dio.delete('/api/books/$id');
+  }
 }
