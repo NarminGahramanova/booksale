@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:booksale/core/utils/result.dart';
+import 'package:booksale/data/repositories/order_repository_impl.dart';
 import 'package:booksale/domain/entities/order.dart';
 import 'package:meta/meta.dart';
-import '../../../../data/repositories/order_repository_impl.dart';
+
+import '../../../../core/di/injection_container.dart';
+import '../../../../domain/repositories/order_repo.dart';
 part 'order_event.dart';
 
 part 'order_state.dart';
 
 class OrderBloc extends Bloc<OrderEvent, OrderState> {
-  final _repository = OrderRepositoryImpl();
+  final _repository = sl<OrderRepo>();
   OrderBloc() : super(OrderInitial()) {
     on<LoadOrders>(_onLoadOrders);
     on<OrderCategorySelected>(_onCategorySelected);

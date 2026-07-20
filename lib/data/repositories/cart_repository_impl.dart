@@ -7,7 +7,7 @@ import 'package:booksale/domain/repositories/cart_repo.dart';
 import '../../core/error/failures.dart';
 
 class CartRepoImpl implements CartRepo {
-  final CartLocalDataSource dataSource;
+  final CartLocalDatasource dataSource;
 
   CartRepoImpl(this.dataSource);
 

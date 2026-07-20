@@ -5,7 +5,10 @@ import 'package:booksale/domain/repositories/order_repo.dart';
 import '../datasources/order_remote_datasource.dart';
 
 class OrderRepositoryImpl implements OrderRepo {
-  final _datasource = OrderRemoteDatasource();
+  final OrderRemoteDatasource _datasource;
+
+  OrderRepositoryImpl({required OrderRemoteDatasource datasource})
+      : _datasource = datasource;
 
   @override
   Future<Result<void>> cancelOrder(String id) async {
@@ -33,7 +36,7 @@ class OrderRepositoryImpl implements OrderRepo {
       final orders = await _datasource.getOrders('');
       return Success(orders);
     } catch (e) {
-      return Error(CacheFailure());
+      return Error((CacheFailure()));
     }
   }
 
