@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:booksale/core/utils/result.dart';
 import 'package:booksale/domain/entities/book.dart';
-import 'package:booksale/data/repositories/book_repository_impl.dart';
+import 'package:booksale/domain/repositories/book_repo.dart';
 import 'package:meta/meta.dart';
+import '../../../../core/di/injection_container.dart';
 import '../../../../core/utils/mock_data.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final _repository = BookRepositoryImpl();
+  final _repository = sl<BookRepo>();
 
   HomeBloc() : super(HomeInitial()) {
     on<LoadBooks>(_onLoadBooks);
